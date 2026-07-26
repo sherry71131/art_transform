@@ -1,22 +1,19 @@
-# CycleGAN Model Configuration
+dataset_name: japanese_style
 
-model:
-  name: CycleGAN
-  framework: PyTorch
+input_dir: data/processed/japanese_style
 
-checkpoint:
-  path: models/cyclegan/checkpoint
+output_dir: outputs/images
 
-dataset:
-  input: data/processed/photos/val
-  output: data/processed/japanese/val
+cyclegan_repo: external/pytorch-CycleGAN-and-pix2pix
 
-image:
-  size: 256
+model_name: style_ukiyoe_pretrained
 
-inference:
-  batch_size: 1
-  num_samples: 10
+image_size: 256
+batch_size: 1
+num_samples: 10
 
-output:
-  directory: outputs/images
+device: cpu
+
+epochs: 100
+batch_size: 1
+learning_rate: 0.0002

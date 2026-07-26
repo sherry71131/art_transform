@@ -1,58 +1,54 @@
-"""
-===========================================================
-CycleGAN Training Module
-===========================================================
-
-This module launches the official PyTorch CycleGAN
-training script using the configuration file.
-
-Author: Shikha Ganapathy
-"""
-
 import subprocess
 from pathlib import Path
 import yaml
 
 
-class Trainer:
+class CycleGANWrapper:
 
     def __init__(self, config_path="configs/model_config.yaml"):
 
         with open(config_path, "r") as f:
             self.config = yaml.safe_load(f)
 
-        self.project_root = Path(__file__).resolve().parent.parent
-
+        # Absolute path to the CycleGAN repository
         self.repo_path = (
-            self.project_root /
-            self.config["cyclegan_repo"]
+            Path(__file__).resolve().parent.parent
+            / self.config["cyclegan_repo"]
         ).resolve()
 
-    def train(self):
+    def run_inference(self):
 
+        # IMPORTANT:
+        # test.py runs INSIDE the CycleGAN repository.
+        # Therefore the dataset path must be relative to that folder.
         dataset_path = "../../data/processed/" + self.config["dataset_name"]
 
         command = [
             "python",
-            "train.py",
+            "test.py",
             "--dataroot",
             dataset_path,
             "--name",
             self.config["model_name"],
             "--model",
-            "cycle_gan",
+            "test",
+            "--no_dropout",
         ]
 
         print("=" * 60)
-        print("Training CycleGAN")
+        print("Running CycleGAN inference...")
         print("=" * 60)
+        print("Repository :", self.repo_path)
+        print("Dataset    :", dataset_path)
+        print()
         print(" ".join(command))
         print()
 
         subprocess.run(
             command,
             cwd=self.repo_path,
-            check=True
+            check=True,
         )
 
-        print("\nTraining completed successfully.")
+        print("\nInference completed successfully!")
+        

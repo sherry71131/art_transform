@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Data Loader
 
@@ -11,6 +12,10 @@ and inference.
 
 from pathlib import Path
 from PIL import Image
+=======
+from pathlib import Path
+import yaml
+>>>>>>> aeaf913 (Complete CycleGAN project modules and evaluation)
 
 
 class DataLoader:
@@ -41,50 +46,41 @@ class DataLoader:
         return Image.open(image_path).convert("RGB")
 =======
     """
-    Loads and validates the processed datasets required by CycleGAN.
+    Loads processed images for CycleGAN inference.
     """
 
-    def __init__(self):
-        """Initialize dataset locations."""
+    def __init__(self, config_path="configs/model_config.yaml"):
 
-        self.project_root = Path(__file__).resolve().parents[1]
+        with open(config_path, "r") as f:
+            self.config = yaml.safe_load(f)
 
-        self.processed_dir = (
-            self.project_root /
-            "data" /
-            "processed"
-        )
+        self.input_dir = Path(self.config["input_dir"])
+        self.num_samples = self.config["num_samples"]
 
-        self.trainA = self.processed_dir / "trainA"
-        self.trainB = self.processed_dir / "trainB"
-        self.testA = self.processed_dir / "testA"
-        self.testB = self.processed_dir / "testB"
-
-    def validate(self):
+    def load_images(self):
         """
-        Verify that all required dataset folders exist.
-
-        Raises
-        ------
-        FileNotFoundError
-            If any required dataset directory is missing.
+        Returns a list of image paths.
         """
 
-        required_dirs = [
-            self.trainA,
-            self.trainB,
-            self.testA,
-            self.testB,
-        ]
+        image_extensions = {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".bmp",
+            ".webp",
+        }
 
-        for directory in required_dirs:
-            if not directory.exists():
-                raise FileNotFoundError(
-                    f"Missing dataset directory:\n{directory}"
-                )
+        images = sorted([
+            p for p in self.input_dir.iterdir()
+            if p.is_file() and p.suffix.lower() in image_extensions
+        ])
 
-        print("✓ Dataset structure validated.")
+        if len(images) == 0:
+            raise FileNotFoundError(
+                f"No images found in {self.input_dir}"
+            )
 
+<<<<<<< HEAD
     def get_dataset_paths(self):
         """
         Return the dataset directory paths.
@@ -102,3 +98,6 @@ class DataLoader:
             "testB": self.testB,
         }
 >>>>>>> 51403c7 (Initialize project structure and integrate CycleGAN framework)
+=======
+        return images[: self.num_samples]
+>>>>>>> aeaf913 (Complete CycleGAN project modules and evaluation)

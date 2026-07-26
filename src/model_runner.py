@@ -1,36 +1,59 @@
 """
-Model Runner
+===========================================================
+Art Style Transfer System
+===========================================================
 
-This module coordinates interactions between the project and the
-official CycleGAN implementation through the CycleGAN wrapper.
+Main entry point for the project.
+
+
 """
 
-from models.cyclegan.cyclegan import CycleGANWrapper
+from src.train import Trainer
+from src.inference import Inference
+from src.evaluation import Evaluator
 
 
 class ModelRunner:
-    """
-    Coordinates model initialization, training, and inference.
-    """
 
     def __init__(self):
-        """Initialize the CycleGAN wrapper."""
-        self.model = CycleGANWrapper()
+        self.trainer = Trainer()
+        self.inference = Inference()
+        self.evaluator = Evaluator()
 
-    def initialize(self):
-        """
-        Initialize the CycleGAN environment.
+    def menu(self):
 
-        Returns
-        -------
-        bool
-            True if initialization is successful.
-        """
-        self.model.load_model()
-        return self.model.is_loaded()
+        while True:
 
-    def get_model(self):
-        """
-        Return the initialized model wrapper.
-        """
-        return self.model
+            print("\n" + "=" * 60)
+            print("      Art Style Transfer using CycleGAN")
+            print("=" * 60)
+            print("1. Train Model")
+            print("2. Run Inference")
+            print("3. Evaluate Results")
+            print("4. Exit")
+
+            choice = input("\nEnter your choice: ")
+
+            if choice == "1":
+                print("\nStarting Training...\n")
+                self.trainer.train()
+
+            elif choice == "2":
+                print("\nRunning Inference...\n")
+                self.inference.run()
+
+            elif choice == "3":
+                print("\nEvaluating Results...\n")
+                self.evaluator.evaluate()
+
+            elif choice == "4":
+                print("\nThank you for using the Art Style Transfer System.")
+                break
+
+            else:
+                print("\nInvalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    runner = ModelRunner()
+    runner.menu()
