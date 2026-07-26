@@ -1,1 +1,22 @@
+# CycleGAN Model Configuration
 
+model:
+  name: CycleGAN
+  framework: PyTorch
+
+checkpoint:
+  path: models/cyclegan/checkpoint
+
+dataset:
+  input: data/processed/photos/val
+  output: data/processed/japanese/val
+
+image:
+  size: 256
+
+inference:
+  batch_size: 1
+  num_samples: 10
+
+output:
+  directory: outputs/images
