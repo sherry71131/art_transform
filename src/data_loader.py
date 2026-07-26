@@ -1,13 +1,8 @@
-<<<<<<< HEAD
+
 """
 Data Loader
 
-<<<<<<< HEAD
-Loads images from the processed dataset for CycleGAN inference.
-=======
-Provides access to the processed datasets used for CycleGAN training
-and inference.
->>>>>>> 51403c7 (Initialize project structure and integrate CycleGAN framework)
+51403c7 (Initialize project structure and integrate CycleGAN framework)
 """
 
 from pathlib import Path
