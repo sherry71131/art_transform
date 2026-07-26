@@ -15,5 +15,5 @@ num_samples: 10
 device: cpu
 
 epochs: 100
-batch_size: 1
+
 learning_rate: 0.0002
