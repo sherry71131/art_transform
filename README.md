@@ -87,7 +87,7 @@ japanese_style/
 Clone the project.
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/sherry71131/art_transform
 cd art_transform
 ```
 
