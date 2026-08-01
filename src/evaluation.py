@@ -8,7 +8,7 @@ Purpose:
 This module displays generated images produced by the
 CycleGAN model for qualitative evaluation.
 
-Author: Shikha Ganapathy
+
 """
 
 from pathlib import Path
