@@ -6,7 +6,7 @@ CycleGAN Training Module
 This module launches the official PyTorch CycleGAN
 training script using the configuration file.
 
-Author: Shikha Ganapathy
+
 """
 
 import subprocess
