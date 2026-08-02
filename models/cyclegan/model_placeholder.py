@@ -1,9 +1,7 @@
 """
 Placeholder for CycleGAN model implementation.
 
-Later, this file will either:
-- Wrap an existing CycleGAN implementation, or
-- Contain a custom implementation based on the paper.
+
 
 For now, this file exists to show repository structure and to be referenced
 by training scripts or notebooks.
