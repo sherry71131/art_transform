@@ -1,11 +1,7 @@
 """
-===========================================================
 Art Style Transfer System
-===========================================================
 
-Main entry point for the project.
-
-
+Main entry point for training, inference, and evaluation.
 """
 
 from src.train import Trainer
@@ -29,8 +25,9 @@ class ModelRunner:
             print("=" * 60)
             print("1. Train Model")
             print("2. Run Inference")
-            print("3. Evaluate Results")
-            print("4. Exit")
+            print("3. Run Pretrained Baseline")
+            print("4. Evaluate Results")
+            print("5. Exit")
 
             choice = input("\nEnter your choice: ")
 
@@ -43,10 +40,14 @@ class ModelRunner:
                 self.inference.run()
 
             elif choice == "3":
+                print("\nRunning Pretrained Baseline...\n")
+                self.inference.run_pretrained()
+
+            elif choice == "4":
                 print("\nEvaluating Results...\n")
                 self.evaluator.evaluate()
 
-            elif choice == "4":
+            elif choice == "5":
                 print("\nThank you for using the Art Style Transfer System.")
                 break
 

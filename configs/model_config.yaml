@@ -13,14 +13,18 @@ cyclegan_repo: external/pytorch-CycleGAN-and-pix2pix
 # Name used by CycleGAN for the experiment and checkpoints.
 model_name: japanese_style_cyclegan
 
+# Existing pretrained model used as a baseline.
+pretrained_model_name: style_ukiyoe_pretrained
+
 # Image and training settings.
 image_size: 256
 batch_size: 1
-epochs: 100
+n_epochs: 100
+n_epochs_decay: 100
 learning_rate: 0.0002
 
 # Number of images used for the initial inference/evaluation run.
 num_samples: 10
 
-
+# Device selection.
 device: auto
