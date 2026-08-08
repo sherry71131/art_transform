@@ -1,19 +1,26 @@
+# Main dataset used for the capstone experiment.
 dataset_name: japanese_style
 
+# Processed CycleGAN dataset.
 input_dir: data/processed/japanese_style
 
-output_dir: outputs/images
+# Folder used by our project for generated samples and evaluation figures.
+output_dir: outputs
 
+# Local copy of the official PyTorch CycleGAN implementation.
 cyclegan_repo: external/pytorch-CycleGAN-and-pix2pix
 
-model_name: style_ukiyoe_pretrained
+# Name used by CycleGAN for the experiment and checkpoints.
+model_name: japanese_style_cyclegan
 
+# Image and training settings.
 image_size: 256
 batch_size: 1
+epochs: 100
+learning_rate: 0.0002
+
+# Number of images used for the initial inference/evaluation run.
 num_samples: 10
 
-device: cpu
 
-epochs: 100
-
-learning_rate: 0.0002
+device: auto
